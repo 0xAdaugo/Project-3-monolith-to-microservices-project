@@ -1,5 +1,5 @@
 name: Udagram Microservices Project
-​
+
 on:
   push:
    branches: [ main ]
@@ -8,9 +8,9 @@ on:
       
 jobs:
   first_job:
-​
+
     runs-on: ubuntu-latest
-​
+
     steps:
     - uses: actions/checkout@v2
     - name: Build & Push Reverse Proxy Image to DockerHub
@@ -18,12 +18,12 @@ jobs:
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         docker build -t adaugo/reverseproxy:v1 ./udagram-reverseproxy
         docker push adaugo/reverseproxy:v1
-​
-​
+
+
   second_job:
-​
+
     runs-on: ubuntu-latest
-​
+
     steps:
     - uses: actions/checkout@v2
     - name: Build & Push Backend User Service Image to DockerHub
@@ -31,12 +31,12 @@ jobs:
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         docker build -t adaugo/udagram-api-user:v1 ./udagram-api-user
         docker push adaugo/udagram-api-user:v1
-​
-​
+
+
   third_job:
-​
+
     runs-on: ubuntu-latest
-​
+
     steps:
     - uses: actions/checkout@v2
     - name: Build & Push Backend Feed Service Image to DockerHub
@@ -44,12 +44,12 @@ jobs:
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         docker build -t adaugo/udagram-api-feed:v1 ./udagram-api-feed
         docker push adaugo/udagram-api-feed:v1
-​
-​
+
+
   forth_job:
-​
+
     runs-on: ubuntu-latest
-​
+    
     steps:
     - uses: actions/checkout@v2
     - name: Build & Push Frontend Image to DockerHub
